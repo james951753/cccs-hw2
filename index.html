@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+<head>
+    <title>Power Calculator</title>
+    <meta charset = "UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        function call_api(event){
+                event.preventDefault();
+                console.log("test");
+               axios.get('https://tsq6jrj3j0.execute-api.us-east-1.amazonaws.com/default/exp', {
+                   params: {
+                    "x":document.getElementById("x").value,
+                    "y":document.getElementById("y").value,
+                }}).then(response => alert(response.data));
+            }
+        </script>
+</head>
+
+    <a>calculate x**y, where x and y are integer</a></br>
+    <form onsubmit="call_api()">
+        <div class="form-group row">
+            <label for="x" class="col-md-4 col-form-label text-md-right font-weight-bold">x</label>
+        </div>
+        <div class="form-group row ml-3">
+            <div class="col-md-10">
+                <input type="number" id="x" class="form-control" name="x" maxlength="20" required autofocus>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="y" class="col-md-4 col-form-label text-md-right font-weight-bold">y</label>
+        </div>
+        <div class="form-group row ml-3">
+            <div class="col-md-10">
+                <input type="number" id="y" class="form-control" name="y" maxlength="20" required>
+            </div>
+        </div>
+        
+        <div class="col col-xs-8">
+            <button type="submit" onclick="call_api(event)">
+                calculate
+            </button>
+
+        </div>
+
+
+</body>
+</html>
